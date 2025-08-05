@@ -9,10 +9,14 @@
 //          e.g. x=4, y=0 -> 1
 //               x=4, y=1 -> 4
 //               x=4, y=2 -> 16
-//               x=4, y=3 -> 64/ Returns: returns the pow of x**y (aka x^y, x raised to the y)
-unsigned int int_pow(unsigned int x, unsigned int y)
-{
-    return 0;
+//               x=4, y=3 -> 64/ Returns: returns the pow of x**y (aka x^y, x
+//               raised to the y)
+unsigned int int_pow(unsigned int x, unsigned int y) {
+    int z = 1;
+    for (int i = 0; i < y; i++) {
+        z *= x;
+    }
+    return z;
 }
 
 // Pre-conditions: none
@@ -24,9 +28,12 @@ unsigned int int_pow(unsigned int x, unsigned int y)
 //
 //          And then, you would return the sum of that sequence mentioned above:
 //              0+1+2+3+4+5+6+7+8+9+10 -> 55
-unsigned int range_sum(unsigned int n)
-{
-    return 0;
+unsigned int range_sum(unsigned int n) {
+    uint sum = 0;
+    for (int i = 1; i < n; i++) {
+        sum += i;
+    }
+    return sum;
 }
 
 // Pre-conditions: none
@@ -39,9 +46,18 @@ unsigned int range_sum(unsigned int n)
 //              fib(n) = fib(n-2) + fib(n+1)
 //          For example, the sequence would look like:
 //              0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
-unsigned int fibonacci(unsigned int n)
-{
-    return 0;
+unsigned int fibonacci(unsigned int n) {
+    if (n == 0) {
+        return 0;
+    }
+    uint nmin2 = 0;
+    uint nmin1 = 1;
+    for (int i = 1; i < n; i++) {
+        int temp = nmin2;
+        nmin2 = nmin1;
+        nmin1 = temp + nmin2;
+    }
+    return nmin1;
 }
 
 // Pre-conditions: input will be >= 0.0
@@ -60,8 +76,20 @@ unsigned int fibonacci(unsigned int n)
 //
 //          also, the fabs function may be useful for you (floating point
 //          absolute value)
-//          
-double bisect_cubicroot(double input)
-{
-    return 0.0;
+//
+double bisect_cubicroot(double input) {
+    const double ERROR = 0.001;
+    double upper = (input < 1) ? 1 : input;
+    double lower = 0;
+    double midpoint;
+    while (upper > lower + ERROR) {
+        midpoint = (upper + lower) / 2;
+        if (midpoint * midpoint * midpoint > input) {
+            upper = midpoint;
+        }
+        else {
+            lower = midpoint;
+        }
+    }
+    return midpoint;
 }
