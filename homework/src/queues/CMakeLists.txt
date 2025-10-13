@@ -1,0 +1,3 @@
+add_library(queue queue.cpp)
+
+target_include_directories(queue PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} "${gtest_SOURCE_DIR}/include")
