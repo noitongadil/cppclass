@@ -8,3 +8,4 @@ googletest-download
 googletest-src
 lib
 *.a
+_deps

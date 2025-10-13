@@ -19,6 +19,16 @@ if(result)
   message(FATAL_ERROR "Build step for googletest failed: ${result}")
 endif()
 
+include(FetchContent)
+
+FetchContent_Declare(
+  xxhash
+  GIT_REPOSITORY https://github.com/Cyan4973/xxHash.git
+  GIT_TAG        v0.8.2
+)
+set(CMAKE_POLICY_DEFAULT_CMP0135 NEW)
+FetchContent_MakeAvailable(xxhash)
+
 # Prevent overriding the parent project's compiler/linker
 # settings on Windows
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
