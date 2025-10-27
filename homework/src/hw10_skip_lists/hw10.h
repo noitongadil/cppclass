@@ -71,7 +71,7 @@ public:
      * @param data Data to search for.
      * @return If found pointer to the node with @p data, else nullptr.
      */
-    Node *search(const T &data, Node *node = nullptr) const;
+    Node *search(const T &data) const;
 
     /**
      * @brief Inserts a node with @p data into the skip list.
