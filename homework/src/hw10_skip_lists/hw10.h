@@ -10,7 +10,7 @@ private:
     struct Node
     {
         T data; ///< The data that the node contains.
-        Node *levels[]; ///< Pointer to an array of pointers. (heap-allocate)
+        Node **levels; ///< Pointer to an array of pointers. (heap-allocate)
         size_t height; ///< The height of the node (the array).
 
         /**
