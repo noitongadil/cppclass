@@ -28,7 +28,7 @@ public:
     HashMap(const HashMap &other);
 
     /**
-     * @brief Copy constructs a hash map from @p other.
+     * @brief Copy assigns a hash map from @p other.
      *
      * @param other Reference to hash map to copy.
      * @return Reference to this object.
@@ -43,7 +43,7 @@ public:
     HashMap(HashMap &&other);
 
     /**
-     * @brief Copy constructs a hash map from @p other.
+     * @brief Move assigns a hash map from @p other.
      *
      * @param other R-value reference to hash map to copy.
      * @return Reference to this object.
