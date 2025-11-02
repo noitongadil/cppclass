@@ -69,7 +69,7 @@ public:
      * @param other R-Value reference to the skip list to move from.
      * @return Reference to this object.
      */
-    SkipList &operator=(const SkipList &&other);
+    SkipList &operator=(SkipList &&other);
 
     /**
      * @brief Destroys the skip list.
