@@ -48,7 +48,7 @@ public:
      * @param other R-value reference to hash map to copy.
      * @return Reference to this object.
      */
-    HashMap &operator=(const HashMap &&other);
+    HashMap &operator=(HashMap &&other);
 
     /**
      * @brief Destructor.
