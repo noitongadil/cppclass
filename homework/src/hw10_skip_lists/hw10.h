@@ -4,15 +4,13 @@
 
 namespace cppclass
 {
-template <typename T> class SkipList
+template <typename T, const size_t MAX_LEVEL> class SkipList
 {
 private:
-    static constexpr int MAX_LEVEL = 20; ///< Maximum number of pointers a Node can have in its array of pointers.
-
     struct Node
     {
         T data; ///< The data that the node contains.
-        Node *levels[MAX_LEVEL] = { nullptr }; ///< The array of pointers.
+        Node *levels[]; ///< Pointer to an array of pointers. (heap-allocate)
         size_t height; ///< The height of the node (the array).
 
         /**
@@ -22,6 +20,11 @@ private:
          * @param height The height of the node.
          */
         Node(const T &data, const size_t height);
+
+        /**
+         * @brief Destroys a node.
+         */
+        ~Node();
     };
 
 public:
@@ -39,31 +42,39 @@ public:
     SkipList(const T *arr, const size_t size);
 
     /**
-     * @brief Constructs a skip list from an array.
+     * @brief Copy constructs a skip list from @p other.
      *
      * @param other Reference to the skip list to copy from.
      */
     SkipList(const SkipList &other);
 
     /**
-     * @brief Constructs a skip list from an array.
+     * @brief Copy assigns a skip list from @p other.
+     *
+     * @param other Reference to skip list to copy.
+     * @return Reference to this object.
+     */
+    SkipList &operator=(const SkipList &other);
+
+    /**
+     * @brief Move contructs a skip list from @p other
      *
      * @param other R-Value reference to the skip list to move from.
      */
     SkipList(SkipList &&other);
 
     /**
+     * @brief Move assigns a skip list from @p other
+     *
+     * @param other R-Value reference to the skip list to move from.
+     * @return Reference to this object.
+     */
+    SkipList &operator=(const SkipList &&other);
+
+    /**
      * @brief Destroys the skip list.
      */
     ~SkipList();
-
-    /**
-     * @brief Iterates through the list to find @p index.
-     *
-     * @param index Index within the skip list.
-     * @return Pointer to the node with @p index.
-     */
-    Node *at(size_t index) const;
 
     /**
      * @brief Searches the skip list for the node with @p data.
@@ -80,14 +91,6 @@ public:
      * @return True if inserted, otherwise false.
      */
     bool insert(const T &data);
-
-    /**
-     * @brief Removes @p node_to_erase from the list.
-     *
-     * @param node_to_erase Pointer to the node to remove.
-     * @return True if removed, otherwise false.
-     */
-    bool remove(Node *node_to_rem);
 
     /**
      * @brief Removes an element with @p data from the list.
