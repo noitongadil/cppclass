@@ -49,27 +49,11 @@ public:
     SkipList(const SkipList &other);
 
     /**
-     * @brief Copy assigns a skip list from @p other.
-     *
-     * @param other Reference to skip list to copy.
-     * @return Reference to this object.
-     */
-    SkipList &operator=(const SkipList &other);
-
-    /**
      * @brief Move contructs a skip list from @p other
      *
      * @param other R-Value reference to the skip list to move from.
      */
     SkipList(SkipList &&other);
-
-    /**
-     * @brief Move assigns a skip list from @p other
-     *
-     * @param other R-Value reference to the skip list to move from.
-     * @return Reference to this object.
-     */
-    SkipList &operator=(SkipList &&other);
 
     /**
      * @brief Destroys the skip list.
